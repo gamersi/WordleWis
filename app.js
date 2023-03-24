@@ -3,7 +3,7 @@ let rightWord = 0
 
 // prototype injection for string to check if it is a letter
 String.prototype.isAlpha = function() {
-    let re = /^[a-zA-Z]+$/;
+    let re = /^[a-zA-Zä-üÄ-Üß]+$/;
     return re.test(this);
 }
 
