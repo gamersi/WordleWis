@@ -122,16 +122,6 @@ function compareWords(word = "hilfe") {
             empty++;
         }
     })
-    if (empty == 0) {
-        alert("you lose! Next round in 5 seconds.")
-        $(".inputField").each((index, elem) => {
-            elem.disabled = true;
-        })
-        setTimeout(() => {
-            initGame();
-        }, 5000)
-    }
-    empty = 0
     if (corrWord == word) {
         alert("You won! Next round in 5 seconds.");
         $(".inputField").each((index, elem) => {
@@ -140,7 +130,18 @@ function compareWords(word = "hilfe") {
         setTimeout(() => {
             initGame();
         }, 5000)
+    } else {
+        if (empty == 0) {
+            alert("you lose! Next round in 5 seconds.")
+            $(".inputField").each((index, elem) => {
+                elem.disabled = true;
+            })
+            setTimeout(() => {
+                initGame();
+            }, 5000)
+        }
     }
+    empty = 0
     return correction
 }
 
@@ -154,7 +155,7 @@ function reveal(correction, row) {
         console.log(corr)
         if(row.children[corr.id].value != corr.letter) {
             // alert("Plis hep me curaption");
-            $(".errors").text("Plis hep me curaption")
+            $(".errors").text("Corruption! please refresh and stop doing shady stuff")
         }
         row.children[corr.id].style.backgroundColor = corr.color;
     })
