@@ -123,19 +123,19 @@ function compareWords(word = "hilfe") {
         }
     })
     if (corrWord == word) {
-        alert("You won! Next round in 5 seconds.");
         $(".inputField").each((index, elem) => {
             elem.disabled = true;
         })
+        alert("You won! Next round in 5 seconds.");
         setTimeout(() => {
             initGame();
         }, 5000)
     } else {
         if (empty == 0) {
-            alert("you lose! Next round in 5 seconds.")
             $(".inputField").each((index, elem) => {
                 elem.disabled = true;
             })
+            alert("you lose! Next round in 5 seconds. The correct word was " + wordList.data[rightWord])
             setTimeout(() => {
                 initGame();
             }, 5000)
