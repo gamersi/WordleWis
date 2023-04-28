@@ -29,10 +29,10 @@ $(".inputField").keyup((e) => {
         })
         if (valid) {
             reveal(compareWords(word), e.currentTarget.parentElement)
-            $(".errors").text("everything fine 'till now!")
-            $(e.currentTarget).nextAll('.inputField:enabled:first').focus();
+            $(".errors").text("Wordle Deutsch")
+            $(e.currentTarget).parent().next().children()[0].focus();
         }
-        else $(".errors").text("Please fill out all fields")
+        else $(".errors").text("Bitte alles ausfüllen")
     }
 })
 
@@ -126,7 +126,7 @@ function compareWords(word = "hilfe") {
         $(".inputField").each((index, elem) => {
             elem.disabled = true;
         })
-        alert("You won! Next round in 5 seconds.");
+        alert("Du hast gewonnen! Nächste Runde in 5 sekunden.");
         setTimeout(() => {
             initGame();
         }, 5000)
@@ -135,7 +135,7 @@ function compareWords(word = "hilfe") {
             $(".inputField").each((index, elem) => {
                 elem.disabled = true;
             })
-            alert("you lose! Next round in 5 seconds. The correct word was " + wordList.data[rightWord])
+            alert("Du hast verloren! Nächste Runde in 5 Sekunden. Das korrekte Wort wäre " + wordList.data[rightWord] + " gewesen.")
             setTimeout(() => {
                 initGame();
             }, 5000)
@@ -152,10 +152,10 @@ function compareWords(word = "hilfe") {
  */
 function reveal(correction, row) {
     correction.forEach((corr) => {
-        console.log(corr)
+        // console.log(corr)
         if(row.children[corr.id].value != corr.letter) {
             // alert("Plis hep me curaption");
-            $(".errors").text("Corruption! please refresh and stop doing shady stuff")
+            $(".errors").text("Korruption! Bitte lade die Seite neu.")
         }
         row.children[corr.id].style.backgroundColor = corr.color;
     })
@@ -165,7 +165,7 @@ function reveal(correction, row) {
 function initGame() {
     // reset everything
     console.clear()
-    $(".errors").text("everything fine 'till now!")
+    $(".errors").text("Wordle Deutsch")
     $(".inputField").each((index, elem) => {
         elem.value = "";
         elem.style.backgroundColor = "white";
