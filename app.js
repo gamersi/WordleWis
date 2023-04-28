@@ -96,11 +96,22 @@ function compareWords(word = "hilfe") {
                 color: "green"
             })
         } else if (corrWord.toLowerCase().includes(letter.toLowerCase())) {
-            correction.push({
-                id: index,
-                letter: letter,
-                color: "yellow"
-            })
+            //check if the letter is in the word and if it is contained more than already in the correctionList
+            let numChars = corrWord.toLowerCase().split(letter.toLowerCase()).length-1
+            let numCharsCorr = correction.filter((corr) => { return corr.letter.toLowerCase() == letter.toLowerCase() }).length
+            if (numChars > numCharsCorr) {
+                correction.push({
+                    id: index,
+                    letter: letter,
+                    color: "yellow"
+                })
+            } else {
+                correction.push({
+                    id: index,
+                    letter: letter,
+                    color: "red"
+                })
+            }
         } else {
             correction.push({
                 id: index,
@@ -126,7 +137,7 @@ function compareWords(word = "hilfe") {
         $(".inputField").each((index, elem) => {
             elem.disabled = true;
         })
-        alert("Du hast gewonnen! Nächste Runde in 5 sekunden.");
+        alert("Du hast gewonnen! Nächste Runde in 5 Sekunden.");
         setTimeout(() => {
             initGame();
         }, 5000)
