@@ -24,6 +24,8 @@
 
 .inputField:disabled {
     background-color: #e6e6e6;
+    -webkit-appearance: none;
+    opacity:  1;
     color: black;
 }
 
