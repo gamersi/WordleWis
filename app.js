@@ -90,16 +90,25 @@ function compareWords(word = "hilfe") {
     let corrWord = wordList.data[rightWord]
     word.split("").forEach((letter, index) => {
         if (letter.toLowerCase() == corrWord[index].toLowerCase()) {
+            let numChars = corrWord.toLowerCase().split(letter.toLowerCase()).length-1
+            let numCharsCorr = correction.filter((corr) => { return corr.letter.toLowerCase() == letter.toLowerCase() }).length
+            if (numCharsCorr + 1 >  numChars) {
+                let numReplaced = 0 
+                correction.forEach((corr) => {
+                    if (corr.letter.toLowerCase() == letter.toLowerCase() && numReplaced <= numCharsCorr - numChars) {
+                        corr.color = "red"
+                    }
+                })
+            }
             correction.push({
                 id: index,
                 letter: letter,
                 color: "green"
             })
         } else if (corrWord.toLowerCase().includes(letter.toLowerCase())) {
-            //check if the letter is in the word and if it is contained more than already in the correctionList
             let numChars = corrWord.toLowerCase().split(letter.toLowerCase()).length-1
             let numCharsCorr = correction.filter((corr) => { return corr.letter.toLowerCase() == letter.toLowerCase() }).length
-            if (numChars > numCharsCorr) {
+            if (numChars >= numCharsCorr) {
                 correction.push({
                     id: index,
                     letter: letter,
